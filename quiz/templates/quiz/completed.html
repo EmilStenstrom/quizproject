@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>Du är klar och fick {{ correct }} av {{ total }} rätt</h1>
+
+	{% for question in questions %}
+		<p>Frågan var: {{ question.question }}</p>
+		<p>Rätt svar, var nummer: {{ question.correct }}</p>
+
+		{% for question_number, user_answer in saved_answers.items %}
+			{% if question_number == forloop.parentloop.counter|stringformat:"s" %}
+				{% if user_answer == 1 %}
+					<p>Ditt svar: {{ question.answer1 }}</p>
+				{% endif %}
+				{% if user_answer == 2 %}
+					<p>Ditt svar: {{ question.answer2 }}</p>
+				{% endif %}
+				{% if user_answer == 3 %}
+					<p>Ditt svar: {{ question.answer3 }}</p>
+				{% endif %}
+			{% endif %}
+		{% endfor %}
+
+	{% endfor %}
+
+	<p><a href="{% url "start_page" %}">Till startsidan</a></p>
+</body>
+</html>

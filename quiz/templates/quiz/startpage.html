@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+	<h1>Frågesporter</h1>
+	{% for quiz in quizzes %}
+		<p><a href="{% url "quiz_page" quiz.quiz_number %}">{{ quiz.name }}</a></p>
+	{% empty %}
+		<p><em>Det finns inga frågesporter ännu.</em></p>
+	{% endfor %}
+</body>
+</html>

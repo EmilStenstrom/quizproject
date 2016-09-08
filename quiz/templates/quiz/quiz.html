@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>{{ quiz.name }}</h1>
+	<p>{{ quiz.description }}</p>
+	<p><a href="{% url "question_page" quiz.quiz_number 1 %}">Starta</a></p>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+	<h1>{{ question_number }}. {{ question }}</h1>
+    <form action="{% url "answer_page" quiz.quiz_number question_number %}" method="post">
+        {% csrf_token %}
+        <p>
+            <input type="radio" name="answer" id="v1" value="1">
+            <label for="v1">{{ answer1 }}</label>
+        </p>
+        <p>
+            <input type="radio" name="answer" id="v2" value="2">
+            <label for="v2">{{ answer2 }}</label>
+        </p>
+        <p>
+            <input type="radio" name="answer" id="v3" value="3">
+            <label for="v3">{{ answer3 }}</label>
+        </p>
+        <button type="submit">Nästa</button>
+</body>
+</html>
