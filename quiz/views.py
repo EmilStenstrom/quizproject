@@ -38,7 +38,7 @@ def answer(request, quiz_number, question_number):
     question_number = int(question_number)
     quiz = Quiz.objects.get(quiz_number=quiz_number)
     num_questions = quiz.questions.count()
-    if num_questions == question_number:
+    if num_questions <= question_number:
         return redirect("completed_page", quiz_number)
     else:
         return redirect("question_page", quiz_number, question_number + 1)
@@ -46,11 +46,12 @@ def answer(request, quiz_number, question_number):
 def completed(request, quiz_number):
     quiz = Quiz.objects.get(quiz_number=quiz_number)
     questions = quiz.questions.all()
-    saved_answers = request.session[quiz_number]
+    saved_answers = request.session.get(quiz_number, {})
 
     num_correct_answers = 0
-    for counter, question in enumerate(questions):
-        if question.correct == saved_answers[str(counter + 1)]:
+    for question_number, answer in saved_answers.items():
+        correct_anwer = questions[int(question_number) - 1].correct
+        if correct_anwer == answer:
             num_correct_answers += 1
 
     context = {
