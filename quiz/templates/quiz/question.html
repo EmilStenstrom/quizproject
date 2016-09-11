@@ -2,6 +2,13 @@
 <html>
 <body>
 	<h1>{{ question_number }}. {{ question }}</h1>
+
+    {% if islastpage %}
+        <p>Detta är sista sidan!</p>
+    {% else %}
+        <p>Detta är INTE sista sidan!</p>
+    {% endif %}
+
     <form action="{% url "answer_page" quiz.quiz_number question_number %}" method="post">
         {% csrf_token %}
         <p>
