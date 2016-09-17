@@ -3,6 +3,17 @@
 <body>
 	<h1>Du är klar och fick {{ correct }} av {{ total }} rätt</h1>
 
+	{% for question in questions %}
+		<p>Frågan var: {{ question.question }}</p>
+		<p>Rätt svar, var nummer: {{ question.correct }}</p>
+		<p>Ditt svar, var nummer: {{ question.user_answer }}</p>
+		{% if question.correct == question.user_answer %}
+			<p>Du hade RÄTT</p>
+		{% else %}
+			<p>Du hade FEL</p>
+		{% endif %}
+	{% endfor %}
+
 	<p><a href="{% url "start_page" %}">Till startsidan</a></p>
 </body>
 </html>
