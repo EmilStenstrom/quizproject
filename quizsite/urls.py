@@ -1,12 +1,12 @@
-from django.conf.urls import include, url
 from django.contrib import admin
+from django.urls import path
 from quiz import views
 
 urlpatterns = [
-    url(r"^$", views.startpage, name="start_page"),
-    url(r"^quiz/([0-9]+)/$", views.quiz, name="quiz_page"),
-    url(r"^quiz/([0-9]+)/question/([0-9]+)/$", views.question, name="question_page"),
-    url(r"^quiz/([0-9]+)/question/([0-9]+)/answer/$", views.answer, name="answer_page"),
-    url(r"^quiz/([0-9]+)/completed/$", views.completed, name="completed_page"),
-    url(r'^admin/', include(admin.site.urls)),
+    path("", views.startpage, name="start_page"),
+    path("quiz/<int:quiz_number>/", views.quiz, name="quiz_page"),
+    path("quiz/<int:quiz_number>/question/<int:question_number>/", views.question, name="question_page"),
+    path("quiz/<int:quiz_number>/question/<int:question_number>/answer/", views.answer, name="answer_page"),
+    path("quiz/<int:quiz_number>/completed/", views.completed, name="completed_page"),
+    path('admin/', admin.site.urls),
 ]
