@@ -20,6 +20,7 @@ def question(request, quiz_number, question_number):
     question = questions[question_number - 1]
 
     num_questions = quiz.questions.count()
+
     islastpage = False
     if question_number == num_questions:
         islastpage = True
