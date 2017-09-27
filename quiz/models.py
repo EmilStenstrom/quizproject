@@ -6,7 +6,7 @@ class Quiz(models.Model):
     description = models.TextField()
 
     def __str__(self):
-    	return self.name
+        return self.name
 
 class Question(models.Model):
     question = models.TextField()
@@ -17,5 +17,5 @@ class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name="questions", on_delete=models.CASCADE)
 
     def __str__(self):
-    	return self.quiz.name + " / " + self.question
+        return self.quiz.name + " / " + self.question
 
