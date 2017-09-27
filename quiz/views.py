@@ -6,13 +6,13 @@ def startpage(request):
     context = {
         "quizzes": Quiz.objects.all(),
     }
-    return render(request, "quiz/startpage.html", context)
+    return render(request, "startpage.html", context)
 
 def quiz(request, quiz_number):
     context = {
         "quiz": Quiz.objects.get(quiz_number=quiz_number),
     }
-    return render(request, "quiz/quiz.html", context)
+    return render(request, "quiz.html", context)
 
 def question(request, quiz_number, question_number):
     quiz = Quiz.objects.get(quiz_number=quiz_number)
@@ -33,7 +33,7 @@ def question(request, quiz_number, question_number):
         "quiz": quiz,
         "islastpage": islastpage,
     }
-    return render(request, "quiz/question.html", context)
+    return render(request, "question.html", context)
 
 def answer(request, quiz_number, question_number):
     answer = request.POST["answer"]
@@ -67,4 +67,4 @@ def completed(request, quiz_number):
         "total": len(questions),
         "questions": questions,
     }
-    return render(request, "quiz/completed.html", context)
+    return render(request, "completed.html", context)
